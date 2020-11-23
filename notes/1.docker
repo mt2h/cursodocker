@@ -1,0 +1,8 @@
+docker run hello-world
+
+docker pull alpine
+docker pull alpine:3.7
+docker run -it alpine:3.7 sh
+
+docker ps
+docker exec -it ba50145aa61b sh

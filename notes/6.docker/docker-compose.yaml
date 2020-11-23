@@ -1,0 +1,52 @@
+nginx-proxy:
+  image: jwilder/nginx-proxy
+  restart: always
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+    - /root/notes/6.docker/certs:/etc/nginx/certs:ro
+    - /etc/nginx/vhost.d
+    - /usr/share/nginx/html
+  labels:
+    - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+
+letsencrypt:
+  image: jrcs/letsencrypt-nginx-proxy-companion
+  restart: always
+  volumes:
+    - /root/notes/6.docker/certs:/etc/nginx/certs:rw
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+  volumes_from:
+    - nginx-proxy:rw
+
+www:
+  image: nginx
+  restart: always
+  expose:
+    - "80"
+  volumes:
+    - /root/notes/6.docker/www:/usr/share/nginx/html:ro
+  environment:
+    - VIRTUAL_HOST=site1.cl,site1.cl
+    - LETSENCRYPT_HOST=site1.cl,site1.cl
+    - LETSENCRYPT_EMAIL=mt2h@hotmail.com
+
+#www2:
+#  image: nginx
+#  restart: always
+#  expose:
+#    - "80"
+#  volumes:
+#    - /root/notes/6.docker/www2:/usr/share/nginx/html:ro
+#  environment:
+#    - VIRTUAL_HOST=site2.cl,site2.cl
+
+#www:
+#  image: nginx
+#  restart: always
+#  ports:
+#    - "80:80"
+#  volumes:
+#    - /root/notes/6.docker/www:/usr/share/nginx/html:ro
