@@ -1,0 +1,8 @@
+#commands
+docker-compose up -d
+docker-compose exec nginx nginx -v
+
+#recreate with override
+docker-compose up -d
+docker-compose exec nginx env
+

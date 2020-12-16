@@ -1,0 +1,23 @@
+#commands
+docker run httpd #created in IP 172.17.0.2 bridge | ID 2d4a5ee29458
+curl 172.17.0.2 #<html><body><h1>It works!</h1></body></html>
+docker run nginx #id b36dc9091aff
+docker inspect b36 #info docker | NetworkSettings containt info IP 172.17.0.3 bridge
+docker start 2d4 #start docker exited
+
+#remove dockers
+docker stop 2d4
+docker rm 2d4
+docker rm b36
+
+#other commands
+docker run -it ubuntu #ID 9bb4fef74a26
+docker ps -a
+docker start 9bb
+docker attach 9bb
+docker exec -it 9bb /bin/bash
+
+#logs docker
+docker run nginx #ID 623a7cee6f34
+docker logs 623
+docker logs --tail 50 844

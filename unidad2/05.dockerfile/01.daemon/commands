@@ -1,0 +1,8 @@
+#commands
+vim Dockerfile
+docker build -t my_web ~/curso/unidad2/03.dockerfile/
+docker images #created image with ID 10d0dad14dc0
+docker run -d -p 85:80 my_web
+curl localhost:85
+docker image history 10d0dad14dc0
+

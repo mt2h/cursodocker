@@ -1,0 +1,3 @@
+#commands
+docker build -t alexekkus2/href-counter:lastet .
+docker run -it alexekkus2/href-counter:lastet sh

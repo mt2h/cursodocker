@@ -1,0 +1,12 @@
+#commands
+docker network ls
+docker network inspect bridge
+network create my_network
+docker network ls
+docker network inspect my_network
+
+#disconnect docker in network
+docker network disconnect <bridge> <docker>
+
+#connect docker in network
+docker network connect <bridge> <docker>

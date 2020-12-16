@@ -1,0 +1,3 @@
+#commands
+docker build -t mywildfly . # . is current directory
+docker run -it --rm mywildfly

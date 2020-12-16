@@ -1,0 +1,51 @@
+#install docker
+apt install docker.io
+systemctl enable --now docker
+sudo usermod -aG docker cristhian
+docker --version
+
+#commands docker
+docker ps
+docker ps -a #all docker, include dead
+docker image ls
+docker images
+
+#run an image docker from hub.docker.com
+docker run hello-world #your id begins with ea7
+
+#stop docker
+docker stop ea7
+
+#remove docker
+docker rm ea7
+
+#docker run, after remove
+docker run --rm hello-world 
+
+#docker nginx
+docker run kitematic/hello-world-nginx #id docker in ps is 79cfd3a99b29
+docker run --detach --publish 8011:80 kitematic/hello-world-nginx #pusblish port in localhost for view
+
+#in docker
+docker exec --interactive --tty 79cfd3a99b29 /bin/sh
+
+#copy files in docker
+docker cp 79c:/website_files/index.html index.html #docker to localhost
+vim index.html
+docker cp index.html 79c:/website_files/index.html #localhost to docker
+
+#commit docker
+docker commit 79c my_nginx #with tag
+docker run -d --rm -p 8013:80 my_nginx #run new docker with changes
+
+#run new docker
+docker run -d -p 8012:80 kitematic/hello-world-nginx #id docker begins with ee0
+
+#remove new docker
+docker rm --force ee0
+
+#other commands
+docker run alpine:3.7 ls -l
+docker run -it alpine:3.7 sh
+docker ps #id 607cedf8beb9 | no exit previous docker alpine
+docker exec -it 607cedf8beb9 sh #entry docker no exit with ID

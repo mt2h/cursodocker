@@ -1,0 +1,13 @@
+#docker run with name
+docker run --name my_ubuntu -it ubuntu #4e8058ad93e5
+
+#for exit CTRL+p+q
+docker ps
+
+#after, entry with...
+docker attach 4e8
+
+#stop and start docker
+docker stop 4e8
+docker start 4e8
+docker attach 4e8

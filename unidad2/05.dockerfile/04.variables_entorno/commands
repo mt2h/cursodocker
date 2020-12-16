@@ -1,0 +1,3 @@
+#commands
+docker build -t mymariadbenv .
+docker run --name mymariadb -d mymariadbenv

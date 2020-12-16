@@ -1,0 +1,13 @@
+#commands
+docker run -d nginx:1.15.7 #created ID b6c3f0aeefd4
+docker ps
+docker exec -it b6c3f0aeefd4 bash
+
+#commands with volumen
+docker run -v ~/index.html:/usr/share/nginx/html/index.html:ro -d nginx:1.15.7
+docker ps
+docker exec -it 2e9e1ea2342c /bin/bash
+
+#expose port
+docker run -v ~/index.html:/usr/share/nginx/html/index.html:ro -p 8080:80 -d nginx:1.15.7
+curl localhost:8080

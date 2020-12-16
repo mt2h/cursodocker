@@ -1,0 +1,45 @@
+#commands installer
+apt-get update
+apt-get install apt-transport-https
+apt-get upgrade -y
+apt install virtualbox virtualbox-ext-pack
+curl -L https://github.com/docker/machine/releases/download/v0.16.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+chmod +x /tmp/docker-machine &&
+sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+docker-machine version
+
+#commands dockers
+docker-machine create manager1
+docker-machine create worker1
+docker-machine create worker2
+docker-machine ls
+
+docker-machine ssh manager1 #ip eth1 192.168.99.100
+docker swarm init --advertise-addr 192.168.99.100 #into manager1
+#output swarm init, commands to cpy to other nodes
+
+#docker swarm join --token SWMTKN-1-043gwua7x5rfwmbqy4picaye2zhr9px39721gfcqqoa84aphfb-6fp1sqs4wpkt4trtjeowmcooo 192.168.99.100:2377
+docker-machine ssh worker1 #copy command swarm
+docker-machine ssh worker2 #copy command swarm
+#logot to exit workers
+
+#into manager1
+docker node ls
+docker service create --replicas 1 --name helloworld apline:3.4.0 ping www.docker.com
+docker service ls
+docker ps #service id cdggj7xmj3ea service
+docker ps #id docker cdggj7xmj3ea run in manager1
+docker stop cdggj7xmj3ea
+docker service ls
+docker service ps helloworld #now run un docker in worker2 with new id #t1gjgpoqc9x8
+docker service ls
+docker service scale cdggj7xmj3ea=3 #create 3 docker in 3 nodes
+docker service ps helloworld #3 docker each nodes services
+docker service update --image alpine:3.4.1 helloworld #rolling update
+docker service create --name myweb --publish published=8080,target=80 --replicas 2 nginx
+docker service ps myweb
+
+
+
+
+

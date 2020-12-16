@@ -1,0 +1,10 @@
+#commands
+docker search ubuntu #search images availables from hub.docker.com
+docker pull ubuntu #get image from hub.docker.com
+docker images
+docker search ubuntu:14.04 #get version with tag image
+docker pull ubuntu:14.04
+
+#commands for docker
+docker info
+docker version
