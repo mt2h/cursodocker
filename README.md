@@ -44,11 +44,13 @@ sudo systemctl restart containerd
 sudo systemctl enable containerd
 ```
 
-Add Group User
+Settings
 
 ```bash
 #sudo groupadd docker
 sudo usermod -aG docker $USER
+
+sudo chmod 666 /var/run/docker.sock
 ```
 
 ## Commands
